@@ -5,12 +5,16 @@ on:
     branches: [master]
 
 jobs:
-  code-style:
-    name: "Code Style"
+  build:
+    name: "Build"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Checkstyle
+      - name: build
+        run: ./gradlew build
+  unit-tests:
+    name: "Unit tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: tests
         run: ./gradlew test
+
